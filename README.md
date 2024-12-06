@@ -21,7 +21,7 @@ This project is an order management API built with Spring Boot. It consumes mess
 
 ## Technologies Used
 
-- **Java 11+**
+- **Java 21**
 - **Spring Boot**
 - **Apache Kafka**
 - **PostgreSQL**
