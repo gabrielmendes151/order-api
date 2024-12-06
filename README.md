@@ -12,10 +12,12 @@ This project is an order management API built with Spring Boot. It consumes mess
 - [Isolation Level `read_committed`](#isolation-level-read_committed)
 - [Pre-Save Process](#pre-save-process)
 - [Why PostgreSQL?](#why-postgresql)
-- [Key Configurations](#key-configurations)
-- [How to Run the Application](#how-to-run-the-application)
+- [Running the project](#running-the-project)
 - [Available Endpoints](#available-endpoints)
 - [Final Remarks](#final-remarks)
+- [Key Highlights](#key-highlights)
+- [Available Endpoints](#available-endpoints)
+- [Consumer Examples Messages](#consumer-examples-messages)
 
 ---
 
@@ -99,7 +101,7 @@ PostgreSQL was selected as the relational database for the following reasons:
 
 This project demonstrates a robust architecture for order processing using modern technologies and best practices. Kafka integration ensures scalability and resilience, while PostgreSQL provides reliable data storage.
 
-## Key Highlights:
+## Key Highlights
 
 - **Kafka as the Messaging System**: Enables asynchronous processing and decoupling between producers and consumers.
 - **Isolation Level `read_committed`**: Ensures consistency and integrity of consumed data.
@@ -126,7 +128,7 @@ Fetches a paginated list of orders.
 GET http://localhost:8080/orders?page=0&size=5
 ```
 
-### Consumer Examples Messages
+## Consumer Examples Messages
 ```
 {
   "externalOrderId": "123e4567-e89b-12d3-a456-426614174000",
