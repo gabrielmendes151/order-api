@@ -32,6 +32,16 @@ This project is an order management API built with Spring Boot. It consumes mess
 
 ---
 
+## Running the project
+After cloning the project, it is necessary to use Docker Compose to upload a local database. Use the following command
+```
+sudo docker compose up
+```
+
+## Swagger docs
+http://localhost:8080/swagger-ui/index.html
+---
+
 ## Application Overview
 
 The application consists of the following main components:
@@ -112,6 +122,23 @@ Fetches a paginated list of orders.
 
 **Example:**
 
-```bash
+```
 GET http://localhost:8080/orders?page=0&size=5
+```
 
+### Consumer Examples Messages
+```
+{
+  "externalOrderId": "123e4567-e89b-12d3-a456-426614174000",
+   "products": [
+      {
+        "description": "Product A",
+        "value": 100.50
+      },
+      {
+        "description": "Product B",
+        "value": 200.75
+      }
+   ]
+}
+```

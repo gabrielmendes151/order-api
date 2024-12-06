@@ -19,6 +19,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 
@@ -38,16 +39,21 @@ public class OrderService {
         if (orderRepository.findByExternalOrderId(request.getExternalOrderId()).isPresent()) {
             throw new DuplicatedOrderException("Duplicated order ID: " + request.getExternalOrderId());
         }
-
         var order = Order.builder()
                 .externalOrderId(request.getExternalOrderId())
                 .orderStatus(OrderStatus.RECEIVED)
-                .createdAt(ZonedDateTime.now())
-                .updatedAt(ZonedDateTime.now())
+                .createdAt(LocalDateTime.now())
+                .updatedAt(LocalDateTime.now())
                 .build();
+        try {
+            log.debug("Saving pre order: {}", order);
+            orderRepository.save(order);
 
-        log.debug("Saving pre order: {}", order);
-        return orderRepository.save(order);
+        } catch (Exception e) {
+            handleWithProcessingError(order, e);
+        }
+
+        return order;
     }
 
     @Transactional
@@ -57,8 +63,7 @@ public class OrderService {
                     .map(productRequest -> Product.of(order, productRequest))
                     .collect(toList());
 
-            order.setCreatedAt(ZonedDateTime.now());
-            order.setUpdatedAt(ZonedDateTime.now());
+            order.setUpdatedAt(LocalDateTime.now());
             order.setProducts(products);
             order.setTotalValue(calculateTotalValue(products));
 
@@ -74,7 +79,7 @@ public class OrderService {
         Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
         Pageable paging = PageRequest.of(page, size, sort);
         return orderRepository.findAllPageable(paging)
-                .map(order -> objectMapper.convertValue(order, OrderResponse.class));
+                .map(OrderResponse::of);
     }
 
     private static BigDecimal calculateTotalValue(List<Product> products) {
@@ -84,9 +89,8 @@ public class OrderService {
     }
 
     private void handleWithProcessingError(Order order, Exception e) {
-        log.error("Error processing order", e);
-        order.setCreatedAt(ZonedDateTime.now());
-        order.setUpdatedAt(ZonedDateTime.now());
+        log.error("Error in save order", e);
+        order.setUpdatedAt(LocalDateTime.now());
         order.setOrderStatus(OrderStatus.ERROR);
         orderRepository.save(order);
     }

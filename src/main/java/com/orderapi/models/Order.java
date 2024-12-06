@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -30,14 +31,14 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @Column(name = "total_value", nullable = false)
+    @Column(name = "total_value")
     private BigDecimal totalValue;
 
-    @Column(name = "created_at", columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = false)
-    private ZonedDateTime createdAt;
+    @Column(name = "created_at", nullable = false)
+    private LocalDateTime createdAt;
 
-    @Column(name = "updated_at", columnDefinition = "TIMESTAMP WITH TIME ZONE", nullable = false)
-    private ZonedDateTime updatedAt;
+    @Column(name = "updated_at", nullable = false)
+    private LocalDateTime updatedAt;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "order")
     @JsonManagedReference
