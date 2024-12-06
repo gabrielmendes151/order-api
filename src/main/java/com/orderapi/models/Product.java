@@ -1,7 +1,7 @@
 package com.orderapi.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.orderapi.dto.OrderRequest;
+import com.orderapi.dtos.OrderRequest;
 import jakarta.persistence.*;
 import lombok.*;
 

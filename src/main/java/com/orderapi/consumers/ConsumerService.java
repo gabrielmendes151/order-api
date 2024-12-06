@@ -1,8 +1,8 @@
-package com.orderapi.consumer;
+package com.orderapi.consumers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.orderapi.dto.OrderRequest;
-import com.orderapi.service.OrderService;
+import com.orderapi.dtos.OrderRequest;
+import com.orderapi.services.OrderService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.kafka.annotation.KafkaListener;

@@ -1,14 +1,14 @@
-package com.orderapi.service;
+package com.orderapi.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.orderapi.dto.OrderRequest;
-import com.orderapi.dto.OrderResponse;
+import com.orderapi.dtos.OrderRequest;
+import com.orderapi.dtos.OrderResponse;
 import com.orderapi.enums.OrderStatus;
 import com.orderapi.exceptions.DuplicatedOrderException;
 import com.orderapi.models.Order;
 import com.orderapi.models.Product;
-import com.orderapi.repository.OrderRepository;
-import com.orderapi.repository.ProductRepository;
+import com.orderapi.repositories.OrderRepository;
+import com.orderapi.repositories.ProductRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,7 +20,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;

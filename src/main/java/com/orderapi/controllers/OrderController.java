@@ -1,7 +1,7 @@
 package com.orderapi.controllers;
 
-import com.orderapi.dto.OrderResponse;
-import com.orderapi.service.OrderService;
+import com.orderapi.dtos.OrderResponse;
+import com.orderapi.services.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;

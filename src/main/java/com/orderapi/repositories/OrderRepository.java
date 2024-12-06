@@ -1,4 +1,4 @@
-package com.orderapi.repository;
+package com.orderapi.repositories;
 
 import com.orderapi.models.Order;
 import org.springframework.data.domain.Page;

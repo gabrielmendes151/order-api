@@ -1,4 +1,4 @@
-package com.orderapi.dto;
+package com.orderapi.dtos;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;

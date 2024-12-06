@@ -1,15 +1,12 @@
-package com.orderapi.dto;
+package com.orderapi.dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.orderapi.enums.OrderStatus;
 import com.orderapi.models.Order;
-import jakarta.validation.constraints.NotNull;
 import lombok.*;
-import org.springframework.cglib.core.Local;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
